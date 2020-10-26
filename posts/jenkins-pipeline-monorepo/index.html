@@ -14,13 +14,13 @@
 <link rel="icon" type="image/x-icon" href="https://rifhanakram.github.io/favicon.ico">
 <link rel="apple-touch-icon-precomposed" href="https://rifhanakram.github.io/favicon.png">
 
-<link rel="stylesheet" href="https://rifhanakram.github.io/css/style.css?rnd=1603739256" />
+<link rel="stylesheet" href="https://rifhanakram.github.io/css/style.css?rnd=1603739398" />
 
-<link rel="stylesheet" href="https://rifhanakram.github.io/css/my.css?rnd=1603739256">
+<link rel="stylesheet" href="https://rifhanakram.github.io/css/my.css?rnd=1603739398">
 
 <meta property="og:title" content="Automated CI/CD for Monorepo&#39;s" />
 <meta property="og:description" content="Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.
-The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with monorepoand how we can over come them with structure and some magic with Jenkins Pipeline." />
+The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with mono-repo and how we can over come them with structure and some magic with Jenkins Pipeline." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rifhanakram.github.io/posts/jenkins-pipeline-monorepo/" />
 <meta property="og:image" content="https://rifhanakram.github.io/images/og-featured.png"/>
@@ -32,7 +32,7 @@ The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i wi
 
 <meta name="twitter:title" content="Automated CI/CD for Monorepo&#39;s"/>
 <meta name="twitter:description" content="Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.
-The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with monorepoand how we can over come them with structure and some magic with Jenkins Pipeline."/>
+The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with mono-repo and how we can over come them with structure and some magic with Jenkins Pipeline."/>
 
 
 
@@ -67,7 +67,7 @@ The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i wi
         </header>
         <div class="content">
             <p>Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.</p>
-<p>The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with <!-- raw HTML omitted -->monorepo<!-- raw HTML omitted --> and how we can over come them with structure and some magic with <a href="https://www.jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a>.</p>
+<p>The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with <strong>mono-repo</strong> and how we can over come them with structure and some magic with <a href="https://www.jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a>.</p>
 <h2 id="challenges">Challenges</h2>
 <p>Due to the nature of multiple applications residing in a single repo it is not trivial to setup a CI/CD job that detects changes and executes only the impacted applications related CI/CD job. An applications job may typically perform,</p>
 <ul>

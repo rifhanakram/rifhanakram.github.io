@@ -18,7 +18,7 @@
       
       <guid>https://rifhanakram.github.io/posts/jenkins-pipeline-monorepo/</guid>
       <description>&lt;p&gt;Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.&lt;/p&gt;
-&lt;p&gt;The two approaches has its own pro&amp;rsquo;s and con&amp;rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with &lt;!-- raw HTML omitted --&gt;monorepo&lt;!-- raw HTML omitted --&gt; and how we can over come them with structure and some magic with &lt;a href=&#34;https://www.jenkins.io/doc/book/pipeline/&#34;&gt;Jenkins Pipeline&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The two approaches has its own pro&amp;rsquo;s and con&amp;rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with &lt;strong&gt;mono-repo&lt;/strong&gt; and how we can over come them with structure and some magic with &lt;a href=&#34;https://www.jenkins.io/doc/book/pipeline/&#34;&gt;Jenkins Pipeline&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;challenges&#34;&gt;Challenges&lt;/h2&gt;
 &lt;p&gt;Due to the nature of multiple applications residing in a single repo it is not trivial to setup a CI/CD job that detects changes and executes only the impacted applications related CI/CD job. An applications job may typically perform,&lt;/p&gt;
 &lt;ul&gt;
