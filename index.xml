@@ -6,18 +6,71 @@
     <description>Rifhan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 May 2020 21:29:58 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2020 00:29:58 +0530</lastBuildDate>
     
     <atom:link href="https://rifhanakram.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Hello World</title>
-      <link>https://rifhanakram.github.io/posts/hello-world/</link>
-      <pubDate>Mon, 25 May 2020 21:29:58 +0530</pubDate>
+      <title>Automated CI/CD for Monorepo&#39;s</title>
+      <link>https://rifhanakram.github.io/posts/jenkins-pipeline-monorepo/</link>
+      <pubDate>Tue, 27 Oct 2020 00:29:58 +0530</pubDate>
       
-      <guid>https://rifhanakram.github.io/posts/hello-world/</guid>
-      <description>&lt;h2 id=&#34;my-first-blog-post&#34;&gt;My First Blog Post&lt;/h2&gt;
+      <guid>https://rifhanakram.github.io/posts/jenkins-pipeline-monorepo/</guid>
+      <description>&lt;p&gt;Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.&lt;/p&gt;
+&lt;p&gt;The two approaches has its own pro&amp;rsquo;s and con&amp;rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with &lt;!-- raw HTML omitted --&gt;monorepo&lt;!-- raw HTML omitted --&gt; and how we can over come them with structure and some magic with &lt;a href=&#34;https://www.jenkins.io/doc/book/pipeline/&#34;&gt;Jenkins Pipeline&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;challenges&#34;&gt;Challenges&lt;/h2&gt;
+&lt;p&gt;Due to the nature of multiple applications residing in a single repo it is not trivial to setup a CI/CD job that detects changes and executes only the impacted applications related CI/CD job. An applications job may typically perform,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Build&lt;/li&gt;
+&lt;li&gt;Running automated tests&lt;/li&gt;
+&lt;li&gt;Creating and versioning a deployable artifact&lt;/li&gt;
+&lt;li&gt;Deploying that artifact&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lets look at how we can tackle this problem with Jenkins.&lt;/p&gt;
+&lt;h2 id=&#34;some-jenkins-magic&#34;&gt;Some Jenkins Magic&lt;/h2&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;sample structure in a mono-repo setup with jenkins pipeline &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.
+├── src                                 
+    ├── react-app
+        ├── Jenkinsfile     
+    ├── node-app
+        ├── Jenkinsfile                                                               
+└── Jenkinsfile                 # main jenkinsfile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we consider a structure like above, with jenkins we could setup the main Jenkinsfile in the root of the repository as a &lt;a href=&#34;https://www.jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/&#34;&gt;multi-branch jenkins job&lt;/a&gt;. This job can be connected with your remote repository such that it triggers via a webhook when a PR is merged to your mainline branch. You can get creative with the triggers depending on the workflow your team follows.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;A stage inside the src/Jenkinsfile is shown below&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;stage(&#39;Execute Jobs&#39;) {
+    failFast false
+    parallel {
+        stage(&#39;react-app ci&#39;) {
+            when {
+                changeset &amp;quot;src/react-app/**&amp;quot;
+            }
+            steps {
+                build job: &amp;quot;react-app-job&amp;quot;, parameters: [string(name: &#39;branch_name&#39;, value: env.BRANCH_NAME)]
+            }
+        }
+        stage(&#39;node-app ci&#39;) {
+            when {
+                changeset &amp;quot;src/node-app/**&amp;quot;
+            }
+            steps {
+                build job: &amp;quot;node-app-job&amp;quot;, parameters: [string(name: &#39;branch_name&#39;, value: env.BRANCH_NAME)]
+            }
+        }
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In the above example the &lt;strong&gt;changeset&lt;/strong&gt; condition walks through the git changelog for that particular change and checks if there is any change within the given path. If a change is detected then the &lt;strong&gt;build job&lt;/strong&gt; step executes the related jenkins job.&lt;/p&gt;
+&lt;p&gt;Note - &lt;em&gt;&lt;strong&gt;failFast&lt;/strong&gt; is set to false to avoid failure of the entire pipeline if one job fails.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Once we have this setup we can go about and setup separate pipeline jobs for each application in the repository.&lt;/p&gt;
+&lt;p&gt;Below is an example on how the main multi-branch job will look in Jenkins&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://rifhanakram.github.io/img/jenkins-multi-main.png&#34; alt=&#34;jenkins-multi-main.png&#34;&gt;
+The multi-job has executed when change has been pushed to the master branch. When navigate into the master branch execution of the job we would see the executed job as shown below,&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://rifhanakram.github.io/img/jenkins-multi-stage-view.png&#34; alt=&#34;jenkins-multi-stage-view.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In the stage view we can see that build #9 contains changes only for 1 application and build #10 contains changes for both.&lt;/p&gt;
+&lt;p&gt;This is an awesome, quick setup with Jenkins for a monorepo. I&amp;rsquo;m a big fan of Jenkins due to its flexibility and extensibility specially with declarative Jenkins pipelines.&lt;/p&gt;
 </description>
     </item>
     
