@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Rifhan&#39;s Blog</title>
-    <link>https://rifhanakram.github.io/categories/</link>
-    <description>Rifhan&#39;s Blog (Categories)</description>
+    <title>Categories on Thoughts of Rifhan</title>
+    <link>https://blog.rifhanakram.com/categories/</link>
+    <description>Thoughts of Rifhan (Categories)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-    <atom:link href="https://rifhanakram.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rifhanakram.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

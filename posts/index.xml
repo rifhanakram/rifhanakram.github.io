@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Rifhan&#39;s Blog</title>
-    <link>https://rifhanakram.github.io/posts/</link>
-    <description>Rifhan&#39;s Blog (Posts)</description>
+    <title>Posts on Thoughts of Rifhan</title>
+    <link>https://blog.rifhanakram.com/posts/</link>
+    <description>Thoughts of Rifhan (Posts)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 27 Oct 2020 00:29:58 +0530</lastBuildDate>
     
-    <atom:link href="https://rifhanakram.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.rifhanakram.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Automated CI/CD for Monorepo&#39;s</title>
-      <link>https://rifhanakram.github.io/posts/jenkins-pipeline-monorepo/</link>
+      <link>https://blog.rifhanakram.com/posts/jenkins-pipeline-monorepo/</link>
       <pubDate>Tue, 27 Oct 2020 00:29:58 +0530</pubDate>
       
-      <guid>https://rifhanakram.github.io/posts/jenkins-pipeline-monorepo/</guid>
+      <guid>https://blog.rifhanakram.com/posts/jenkins-pipeline-monorepo/</guid>
       <description>&lt;p&gt;Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.&lt;/p&gt;
 &lt;p&gt;The two approaches has its own pro&amp;rsquo;s and con&amp;rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with &lt;strong&gt;mono-repo&lt;/strong&gt; and how we can over come them with structure and some magic with &lt;a href=&#34;https://www.jenkins.io/doc/book/pipeline/&#34;&gt;Jenkins Pipeline&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;challenges&#34;&gt;Challenges&lt;/h2&gt;
@@ -66,9 +66,9 @@
 &lt;p&gt;Note - &lt;em&gt;&lt;strong&gt;failFast&lt;/strong&gt; is set to false to avoid failure of the entire pipeline if one job fails.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Once we have this setup we can go about and setup separate pipeline jobs for each application in the repository.&lt;/p&gt;
 &lt;p&gt;Below is an example on how the main multi-branch job will look in Jenkins&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://rifhanakram.github.io/img/jenkins-multi-main.png&#34; alt=&#34;jenkins-multi-main.png&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rifhanakram.com/img/jenkins-multi-main.png&#34; alt=&#34;jenkins-multi-main.png&#34;&gt;
 The multi-job has executed when change has been pushed to the master branch. When navigate into the master branch execution of the job we would see the executed job as shown below,&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://rifhanakram.github.io/img/jenkins-multi-stage-view.png&#34; alt=&#34;jenkins-multi-stage-view.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.rifhanakram.com/img/jenkins-multi-stage-view.png&#34; alt=&#34;jenkins-multi-stage-view.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;In the stage view we can see that build #9 contains changes only for 1 application and build #10 contains changes for both.&lt;/p&gt;
 &lt;p&gt;This is an awesome, quick setup with Jenkins for a monorepo. I&amp;rsquo;m a big fan of Jenkins due to its flexibility and extensibility specially with declarative Jenkins pipelines.&lt;/p&gt;
 </description>
