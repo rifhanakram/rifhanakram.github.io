@@ -14,9 +14,9 @@
 <link rel="icon" type="image/x-icon" href="https://blog.rifhanakram.com/favicon.ico">
 <link rel="apple-touch-icon-precomposed" href="https://blog.rifhanakram.com/favicon.png">
 
-<link rel="stylesheet" href="https://blog.rifhanakram.com/css/style.css?rnd=1603771807" />
+<link rel="stylesheet" href="https://blog.rifhanakram.com/css/style.css?rnd=1603773656" />
 
-<link rel="stylesheet" href="https://blog.rifhanakram.com/css/my.css?rnd=1603771807">
+<link rel="stylesheet" href="https://blog.rifhanakram.com/css/my.css?rnd=1603773656">
 
 <meta property="og:title" content="Automated CI/CD for Monorepo&#39;s" />
 <meta property="og:description" content="Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.
@@ -103,7 +103,7 @@ The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i wi
 </code></pre>
 <p>If we consider a structure like above, with jenkins we could setup the main Jenkinsfile in the root of the repository as a <a href="https://www.jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/">multi-branch jenkins job</a>. This job can be connected with your remote repository such that it triggers via a webhook when a PR is merged to your mainline branch. You can get creative with the triggers depending on the workflow your team follows.</p>
 <blockquote>
-<p><em>A stage inside the src/Jenkinsfile is shown below</em></p>
+<p><em>A stage inside the main Jenkinsfile is shown below</em></p>
 </blockquote>
 <pre><code>stage('Execute Jobs') {
     failFast false

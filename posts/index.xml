@@ -42,7 +42,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If we consider a structure like above, with jenkins we could setup the main Jenkinsfile in the root of the repository as a &lt;a href=&#34;https://www.jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/&#34;&gt;multi-branch jenkins job&lt;/a&gt;. This job can be connected with your remote repository such that it triggers via a webhook when a PR is merged to your mainline branch. You can get creative with the triggers depending on the workflow your team follows.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;A stage inside the src/Jenkinsfile is shown below&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;A stage inside the main Jenkinsfile is shown below&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;stage(&#39;Execute Jobs&#39;) {
     failFast false
