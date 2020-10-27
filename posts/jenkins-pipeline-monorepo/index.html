@@ -14,9 +14,9 @@
 <link rel="icon" type="image/x-icon" href="https://blog.rifhanakram.com/favicon.ico">
 <link rel="apple-touch-icon-precomposed" href="https://blog.rifhanakram.com/favicon.png">
 
-<link rel="stylesheet" href="https://blog.rifhanakram.com/css/style.css?rnd=1603741408" />
+<link rel="stylesheet" href="https://blog.rifhanakram.com/css/style.css?rnd=1603771807" />
 
-<link rel="stylesheet" href="https://blog.rifhanakram.com/css/my.css?rnd=1603741408">
+<link rel="stylesheet" href="https://blog.rifhanakram.com/css/my.css?rnd=1603771807">
 
 <meta property="og:title" content="Automated CI/CD for Monorepo&#39;s" />
 <meta property="og:description" content="Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.
@@ -63,22 +63,36 @@ The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i wi
 
     <article class="post">
         <header>
-            <h1>Automated CI/CD for Monorepo&#39;s</h1>
+            <div>
+                <h1>Automated CI/CD for Monorepo&#39;s</h1>
+               
+                <div class="time" style="font-size: 16px;
+                color: #666;
+                margin-bottom: 20px;
+                display: block;
+                font-weight: 600;
+                font-family: 'IBM Plex Mono', monospace;" >
+                    Tuesday, October 27, 2020 · 3 min read
+                </div>
+            </div>
+                
         </header>
         <div class="content">
             <p>Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.</p>
 <p>The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with <strong>mono-repo</strong> and how we can over come them with structure and some magic with <a href="https://www.jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a>.</p>
 <h2 id="challenges">Challenges</h2>
-<p>Due to the nature of multiple applications residing in a single repo it is not trivial to setup a CI/CD job that detects changes and executes only the impacted applications related CI/CD job. An applications job may typically perform,</p>
+<p>Due to the nature of multiple applications residing in a single repo it is not trivial to setup a CI/CD job that detects changes and executes only the <strong>impacted applications related CI/CD job</strong>. Some of the steps that contain in a typical pipeline are,</p>
 <ul>
-<li>Build</li>
+<li>Building the code</li>
 <li>Running automated tests</li>
 <li>Creating and versioning a deployable artifact</li>
 <li>Deploying that artifact</li>
 </ul>
 <p>Lets look at how we can tackle this problem with Jenkins.</p>
 <h2 id="some-jenkins-magic">Some Jenkins Magic</h2>
-<p><!-- raw HTML omitted -->sample structure in a mono-repo setup with jenkins pipeline <!-- raw HTML omitted --></p>
+<blockquote>
+<p><em>sample structure in a mono-repo setup with jenkins pipeline</em></p>
+</blockquote>
 <pre><code>.
 ├── src                                 
     ├── react-app
@@ -88,7 +102,9 @@ The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i wi
 └── Jenkinsfile                 # main jenkinsfile
 </code></pre>
 <p>If we consider a structure like above, with jenkins we could setup the main Jenkinsfile in the root of the repository as a <a href="https://www.jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/">multi-branch jenkins job</a>. This job can be connected with your remote repository such that it triggers via a webhook when a PR is merged to your mainline branch. You can get creative with the triggers depending on the workflow your team follows.</p>
+<blockquote>
 <p><em>A stage inside the src/Jenkinsfile is shown below</em></p>
+</blockquote>
 <pre><code>stage('Execute Jobs') {
     failFast false
     parallel {
@@ -114,12 +130,14 @@ The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i wi
 </code></pre><p>In the above example the <strong>changeset</strong> condition walks through the git changelog for that particular change and checks if there is any change within the given path. If a change is detected then the <strong>build job</strong> step executes the related jenkins job.</p>
 <p>Note - <em><strong>failFast</strong> is set to false to avoid failure of the entire pipeline if one job fails.</em></p>
 <p>Once we have this setup we can go about and setup separate pipeline jobs for each application in the repository.</p>
-<p>Below is an example on how the main multi-branch job will look in Jenkins</p>
+<blockquote>
+<p><em>Below is an example on how the main multi-branch job will look in Jenkins</em></p>
+</blockquote>
 <p><img src="/img/jenkins-multi-main.png" alt="jenkins-multi-main.png">
-The multi-job has executed when change has been pushed to the master branch. When navigate into the master branch execution of the job we would see the executed job as shown below,</p>
+In the above image the multi-branch job has executed when a change has been pushed to the master branch. When we navigate into the master branch execution we can see the pipeline as shown below,</p>
 <p><img src="/img/jenkins-multi-stage-view.png" alt="jenkins-multi-stage-view.png"></p>
 <p>In the stage view we can see that build #9 contains changes only for 1 application and build #10 contains changes for both.</p>
-<p>This is an awesome, quick setup with Jenkins for a monorepo. I&rsquo;m a big fan of Jenkins due to its flexibility and extensibility specially with declarative Jenkins pipelines.</p>
+<p>This is an awesome and quick setup with Jenkins for a monorepo. I&rsquo;m a big fan of Jenkins due to its flexibility and extensibility specially with declarative <a href="https://www.jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a>.</p>
 
         </div>
         
