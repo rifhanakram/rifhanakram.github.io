@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Thoughts of Rifhan</title>
+    <title>Posts on Scribbles by Rifhan</title>
     <link>https://blog.rifhanakram.com/posts/</link>
-    <description>Thoughts of Rifhan (Posts)</description>
+    <description>Scribbles by Rifhan (Posts)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 27 Oct 2020 00:29:58 +0530</lastBuildDate>
@@ -77,6 +77,23 @@ In the above image the multi-branch job has executed when a change has been push
 &lt;p&gt;&lt;img src=&#34;https://blog.rifhanakram.com/img/jenkins-multi-stage-view.png&#34; alt=&#34;jenkins-multi-stage-view.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;In the stage view we can see that build #9 contains changes only for 1 application and build #10 contains changes for both.&lt;/p&gt;
 &lt;p&gt;This is an awesome and quick setup with Jenkins for a monorepo. I&amp;rsquo;m a big fan of Jenkins due to its flexibility and extensibility specially with declarative &lt;a href=&#34;https://www.jenkins.io/doc/book/pipeline/&#34;&gt;Jenkins Pipeline&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tech Talks</title>
+      <link>https://blog.rifhanakram.com/posts/tech-talks/</link>
+      <pubDate>Tue, 27 Oct 2020 00:29:58 +0530</pubDate>
+      
+      <guid>https://blog.rifhanakram.com/posts/tech-talks/</guid>
+      <description>&lt;h2 id=&#34;grpc-microservice-communication-with-aws-app-mesh&#34;&gt;gRPC Microservice Communication With AWS App Mesh&lt;/h2&gt;
+&lt;p&gt;This talk was done at the 2020 July AWS User Group Colombo meetup. In this talk i walk through the challenges of microservice communication with gRPC and how we can use AWS App mesh to manage this communication and overcome the challenges mentioned.&lt;/p&gt;
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=qXeBwMVCnSw&#34;&gt;Video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://speakerdeck.com/rifhanakram/grpc-microservice-communication-with-aws-appmesh&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rifhanakram/gRPC-appmesh-demo&#34;&gt;Code Samples&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
