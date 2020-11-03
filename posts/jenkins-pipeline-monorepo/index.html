@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer-when-downgrade">
 
-<title>Automated CI/CD for Monorepo&#39;s  - Scribbles by Rifhan</title>
+<title>CI/CD for Monorepo&#39;s With Jenkins  - Scribbles by Rifhan</title>
 <meta name="description" content="Scribbles by Rifhan is a personal blog">
 
 <link rel="stylesheet" href="/css/all.min.css"/>
@@ -16,11 +16,11 @@
 <link rel="apple-touch-icon-precomposed" href="https://blog.rifhanakram.com/favicon.png">
 <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i|IBM+Plex+Sans:100,100i,400,400i,700,700i" rel="stylesheet">
 
-<link rel="stylesheet" href="https://blog.rifhanakram.com/css/style.css?rnd=1603855336" />
+<link rel="stylesheet" href="https://blog.rifhanakram.com/css/style.css?rnd=1604370873" />
 
 
 
-<meta property="og:title" content="Automated CI/CD for Monorepo&#39;s" />
+<meta property="og:title" content="CI/CD for Monorepo&#39;s With Jenkins" />
 <meta property="og:description" content="Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.
 The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with mono-repo and how we can over come them with structure and some magic with Jenkins Pipeline." />
 <meta property="og:type" content="article" />
@@ -29,7 +29,7 @@ The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i wi
 <meta property="article:modified_time" content="2020-10-27T00:29:58+05:30" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Automated CI/CD for Monorepo&#39;s"/>
+<meta name="twitter:title" content="CI/CD for Monorepo&#39;s With Jenkins"/>
 <meta name="twitter:description" content="Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.
 The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with mono-repo and how we can over come them with structure and some magic with Jenkins Pipeline."/>
 
@@ -77,7 +77,7 @@ The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i wi
     <article class="post">
         <header>
             <div>
-                <h1>Automated CI/CD for Monorepo&#39;s</h1>
+                <h1>CI/CD for Monorepo&#39;s With Jenkins</h1>
                
                 <div class="time" style="font-size: 16px;
                 color: #666;
@@ -94,7 +94,7 @@ The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i wi
             <p>Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.</p>
 <p>The two approaches has its own pro&rsquo;s and con&rsquo;s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with <strong>mono-repo</strong> and how we can over come them with structure and some magic with <a href="https://www.jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a>.</p>
 <h2 id="challenges">Challenges</h2>
-<p>Due to the nature of multiple applications residing in a single repo it is not trivial to setup a CI/CD job that detects changes and executes only the <strong>impacted applications related CI/CD job</strong>. Some of the steps that contain in a typical pipeline are,</p>
+<p>Due to the nature of multiple applications residing in a single repo it is not trivial to setup a CI/CD job that detects changes and executes only the <strong>impacted applications related CI/CD pipeline</strong>. Some of the steps that contain in a typical pipeline are,</p>
 <ul>
 <li>Building the code</li>
 <li>Running automated tests</li>
