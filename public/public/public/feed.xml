@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://blog.rifhanakram.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.rifhanakram.com/" rel="alternate" type="text/html" /><updated>2025-04-14T13:52:17+05:30</updated><id>https://blog.rifhanakram.com/feed.xml</id><title type="html">Scribbles by Rifhan</title><subtitle>Scribbles by Rifhan is a personal blog</subtitle><author><name>Rifhan Akram</name></author><entry><title type="html">jenkins pipeline monorepo</title><link href="https://blog.rifhanakram.com/posts/jenkins-pipeline-monorepo/" rel="alternate" type="text/html" title="jenkins pipeline monorepo" /><published>2025-04-14T00:00:00+05:30</published><updated>2025-04-14T00:00:00+05:30</updated><id>https://blog.rifhanakram.com/posts/jenkins-pipeline-monorepo</id><content type="html" xml:base="https://blog.rifhanakram.com/posts/jenkins-pipeline-monorepo/"><![CDATA[<hr />
+<p>title: “Automated CI/CD for Monorepo’s”
+date: 2020-10-27T00:29:58+05:30
+draft: false
+—</p>
+
+<p>Monorepo is an approach in managing source code under a product, team or company within a single repo as oppose to multi-repo where a single product/application is contained within its own git repository.</p>
+
+<p>The two approaches has its own pro’s and con’s. In this article i will not be discussing on what is the best approach as it entirely matters on the context we work, rather i will walk the through the challenges of Automated CI/CD with <strong>mono-repo</strong> and how we can over come them with structure and some magic with <a href="https://www.jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a>.</p>
+
+<h2 id="challenges">Challenges</h2>
+
+<p>Due to the nature of multiple applications residing in a single repo it is not trivial to setup a CI/CD job that detects changes and executes only the <strong>impacted applications related CI/CD job</strong>. Some of the steps that contain in a typical pipeline are,</p>
+
+<ul>
+  <li>Building the code</li>
+  <li>Running automated tests</li>
+  <li>Creating and versioning a deployable artifact</li>
+  <li>Deploying that artifact</li>
+</ul>
+
+<p>Lets look at how we can tackle this problem with Jenkins.</p>
+
+<h2 id="some-jenkins-magic">Some Jenkins Magic</h2>
+<blockquote>
+  <p><em>sample structure in a mono-repo setup with jenkins pipeline</em></p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── src                                 
+    ├── react-app
+        ├── Jenkinsfile     
+    ├── node-app
+        ├── Jenkinsfile                                                               
+└── Jenkinsfile                 # main jenkinsfile
+</code></pre></div></div>
+
+<p>If we consider a structure like above, with jenkins we could setup the main Jenkinsfile in the root of the repository as a <a href="https://www.jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/">multi-branch jenkins job</a>. This job can be connected with your remote repository such that it triggers via a webhook when a PR is merged to your mainline branch. You can get creative with the triggers depending on the workflow your team follows.</p>
+
+<blockquote>
+  <p><em>A stage inside the main Jenkinsfile is shown below</em></p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stage('Execute Jobs') {
+    failFast false
+    parallel {
+        stage('react-app ci') {
+            when {
+                changeset "src/react-app/**"
+            }
+            steps {
+                build job: "react-app-job", parameters: [string(name: 'branch_name', value: env.BRANCH_NAME)]
+            }
+        }
+        stage('node-app ci') {
+            when {
+                changeset "src/node-app/**"
+            }
+            steps {
+                build job: "node-app-job", parameters: [string(name: 'branch_name', value: env.BRANCH_NAME)]
+            }
+        }
+    }
+}
+
+</code></pre></div></div>
+<p>In the above example the <strong>changeset</strong> condition walks through the git changelog for that particular change and checks if there is any change within the given path. If a change is detected then the <strong>build job</strong> step executes the related jenkins job.</p>
+
+<p>Note - <em><strong>failFast</strong> is set to false to avoid failure of the entire pipeline if one job fails.</em></p>
+
+<p>Once we have this setup we can go about and setup separate pipeline jobs for each application in the repository.</p>
+
+<blockquote>
+  <p><em>Below is an example on how the main multi-branch job will look in Jenkins</em></p>
+</blockquote>
+
+<p><img src="/static/img/jenkins-multi-main.png" alt="jenkins-multi-main.png" />
+In the above image the multi-branch job has executed when a change has been pushed to the master branch. When we navigate into the master branch execution we can see the pipeline as shown below,</p>
+
+<p><img src="/static/img/jenkins-multi-stage-view.png" alt="jenkins-multi-stage-view.png" /></p>
+
+<p>In the stage view we can see that build #9 contains changes only for 1 application and build #10 contains changes for both.</p>
+
+<p>This is an awesome and quick setup with Jenkins for a monorepo. I’m a big fan of Jenkins due to its flexibility and extensibility specially with declarative <a href="https://www.jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a>.</p>]]></content><author><name>Rifhan Akram</name></author><category term="tech" /><summary type="html"><![CDATA[title: “Automated CI/CD for Monorepo’s” date: 2020-10-27T00:29:58+05:30 draft: false —]]></summary></entry><entry><title type="html">tech talks</title><link href="https://blog.rifhanakram.com/posts/tech-talks/" rel="alternate" type="text/html" title="tech talks" /><published>2025-04-14T00:00:00+05:30</published><updated>2025-04-14T00:00:00+05:30</updated><id>https://blog.rifhanakram.com/posts/tech-talks</id><content type="html" xml:base="https://blog.rifhanakram.com/posts/tech-talks/"><![CDATA[<hr />
+<p>title: “Tech Talks”
+date: 2020-10-27T00:29:58+05:30
+featured: true
+draft: false
+—</p>
+
+<h2 id="grpc-microservice-communication-with-aws-app-mesh">gRPC Microservice Communication With AWS App Mesh</h2>
+
+<p>This talk was done at the 2020 July AWS User Group Colombo meetup. In this talk i walk through the challenges of microservice communication with gRPC and how we can use AWS App mesh to manage this communication and overcome the challenges mentioned.</p>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=qXeBwMVCnSw">Video</a></li>
+  <li><a href="https://speakerdeck.com/rifhanakram/grpc-microservice-communication-with-aws-appmesh">Slides</a></li>
+  <li><a href="https://github.com/rifhanakram/gRPC-appmesh-demo">Code Samples</a></li>
+</ul>]]></content><author><name>Rifhan Akram</name></author><category term="tech" /><summary type="html"><![CDATA[title: “Tech Talks” date: 2020-10-27T00:29:58+05:30 featured: true draft: false —]]></summary></entry><entry><title type="html">ulids vs uuids for better write perf</title><link href="https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/" rel="alternate" type="text/html" title="ulids vs uuids for better write perf" /><published>2025-04-14T00:00:00+05:30</published><updated>2025-04-14T00:00:00+05:30</updated><id>https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf</id><content type="html" xml:base="https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/"><![CDATA[<hr />
+<p>title: “UUIDs vs ULIDs For Better Write Performance At Scale”
+date: 2023-01-14T21:29:58+05:30
+draft: false
+—</p>
+
+<h1 id="uuids-vs-ulids-for-better-write-performance-at-scale">UUIDs vs ULIDs For Better Write Performance At Scale</h1>
+
+<p>In this article, we will be discussing the usage of keys as unique identifiers in a distributed relational database setup and their impact on write performance.</p>
+
+<p>The use of auto-incremented, non-repeating, sorted integers has been a common practice for defining primary keys in relational databases. This type of key has been successful because it satisfies the two most crucial indexing requirements.</p>
+
+<ol>
+  <li>They are unique, so they can be uniquely identified.</li>
+  <li>They are ordered and sortable, so they can be efficiently indexed.</li>
+</ol>
+
+<p>When the database is a monolithic entity, this kind of key is ideal. However, as soon as we decide to scale and move to a distributed setup this is no longer unique, this is because now multiple entities start generating auto-incremented numbers.</p>
+
+<h2 id="impact-on-clustered-indexes-during-writes">Impact on Clustered Indexes During Writes</h2>
+
+<p>Before we move on to discuss alternatives to auto-incremented integers as unique identifiers, let’s try to understand how indexes are impacted when relational databases write new data.</p>
+
+<p>Clustered indexes are typically represented in a b-tree data structure. They have several benefits that make them well-suited for usage in clustered indexes.</p>
+
+<ol>
+  <li>Efficient at searching for data: B-trees are designed to be efficient at searching for data, even in large datasets. They use a hierarchical structure that allows for fast traversal of the data, reducing the number of disk I/O operations required to find a specific value.</li>
+  <li>B-trees are balanced: B-trees are self-balancing data structures, which means they maintain a balanced tree structure even when data is inserted or deleted. This helps to ensure that the height of the tree remains relatively constant, which improves performance and reduces the risk of data becoming inaccessible.</li>
+  <li>B-trees support range queries: B-trees can support range queries which means they can be used to efficiently find all the values that fall within a specified range. This is useful in scenarios where you need to find all the records that fall within a certain range of values for a particular column.</li>
+</ol>
+
+<p>In most cases in relational databases, it is allowed to have only 1 clustered index per table, this is because the physical organization of the data is controlled by the clustered index(by the column(s) the index is created, typically the primary key column).</p>
+
+<p>In MSSQL when writing data to a table the DBMS includes logical and physical writes. A logical write is when data is modified in a page in the buffer cache and marked as dirty. A physical write is when a dirty page is written from the buffer cache to the disk. Since logical writes are not immediately written to disk there can be more than one logical write to a page in the buffer cache as long as the record is intended to be written on that page(determined by the clustered index).</p>
+
+<p><img src="/static/img/sql-writes.png" alt="sql-writes.png" />
+<em>Reference - <a href="https://learn.microsoft.com/en-us/sql/relational-databases/writing-pages?view=sql-server-ver16">Writing Pages - SQL Server | Microsoft Learn</a></em></p>
+
+<p>The DBMS must first determine the correct page to store the new row of data based on the clustered index. To do this, it typically performs a binary search on the index to identify the correct page, once the page is identified it needs to read the page from the disk into the buffer cache, this is only required if the page is not present in the buffer cache.</p>
+
+<p>If the clustered index key adheres to the indexing requirements discussed above then subsequent writes will not require reading pages from the physical disk as in most cases they will be available in the buffer cache due to a previous write in near time reading it into the buffer cache.</p>
+
+<p>As soon as you start using a column that is not ordered(during generation) for a clustered index; It would mean that the data stored in the table requires additional work to be organized in a logical order, which would result in poor write performance.</p>
+
+<h2 id="alternative-unique-identifiers-in-a-distributed-environment">Alternative Unique Identifiers In a Distributed Environment</h2>
+
+<h3 id="universally-unique-identifier-uuid">Universally Unique Identifier (UUID)</h3>
+
+<p>UUIDs are 128-bit long strings that can guarantee
+uniqueness across space and time. They are widely used to uniquely identify resources. There are several versions of UUIDs, each with a slightly different format. The most generally used UUID version is 4.</p>
+
+<p><img src="/static/img/uuid.png" alt="uuid.png" />
+<em>128 bit UUIDV4 string</em></p>
+
+<p>A more detailed explanation of UUID can be found in <a href="https://www.ietf.org/rfc/rfc4122.txt">RFC 4122</a></p>
+
+<p>UUID in a distributed setup allows uniqueness but they are not so good for write performance and here is why;</p>
+
+<p>UUIDs are randomized strings(in most versions) that have no particular order in a generation. When you use them for a clustered index column they need to be ordered and stored. Since they are not ordered(naturally during generation) it requires more I/O to store them on the correct page, this could result in bad write performance in large tables and it could lead to issues like <a href="https://learn.microsoft.com/en-us/sql/relational-databases/indexes/reorganize-and-rebuild-indexes?view=sql-server-ver16">index fragmentation</a>  as the data pages may not be in contiguous order.</p>
+
+<h3 id="universally-unique-lexicographically-sortable-identifier-ulid">Universally Unique Lexicographically Sortable Identifier (ULID)</h3>
+
+<p>As the title suggests ULIDs are universally unique yet lexicographically sortable identifiers, this is mainly why it is better in write performance at scale compared to UUIDs. ULIDs are a relatively new form of identifiers and still lack widespread native support.</p>
+
+<p>ULID is generated in 2 components,</p>
+
+<ol>
+  <li>Timestamp - 48-bit, integer with the UNIX-time in milliseconds</li>
+  <li>Randomness - 80-bit random string</li>
+</ol>
+
+<p>In total, they are a 128-bit long unique yet lexicographically sortable string. ULID is encoded using a combination of binary and base32 characters which results in a more compact 26-character format compared to the 36 characters generated by UUID v4.</p>
+
+<p>More details about ULID can be found in its <a href="[ulid/spec: The canonical spec for ulid (github.com)](https://github.com/ulid/spec)">specification document</a></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In general, we can conclude that ULIDs tend to have the upper hand in write performance( in most cases ) compared to UUIDs, specifically due to the lexicographically sortable nature of ULID.</p>
+
+<p>Thank you for reading this article. I hope to see you at the next one.</p>]]></content><author><name>Rifhan Akram</name></author><category term="tech" /><summary type="html"><![CDATA[title: “UUIDs vs ULIDs For Better Write Performance At Scale” date: 2023-01-14T21:29:58+05:30 draft: false —]]></summary></entry></feed>
