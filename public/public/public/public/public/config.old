@@ -1,0 +1,29 @@
+baseURL: "https://blog.rifhanakram.com/"
+languageCode: "en-us"
+title: "Scribbles by Rifhan"
+theme: "anubis"
+paginate: 10
+disqusShortname: blog-rifhanakram
+googleAnalytics: UA-123-45
+env: production
+
+menu:
+  main:
+  - identifier: posts
+    name: Posts
+    title: Posts
+    url: /posts/
+    weight: 0
+  - name: Tech Talks
+    title: Tech Talks
+    url: /tech-talks/
+    weight: 10
+
+params:
+  author: "Rifhan Akram"
+  description: ""
+  images:
+    - images/og-featured.png
+  customCSS:
+    - css/my.css
+  dateFormat: "2006-01-02"
