@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://blog.rifhanakram.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.rifhanakram.com/" rel="alternate" type="text/html" /><updated>2025-04-14T14:28:08+05:30</updated><id>https://blog.rifhanakram.com/feed.xml</id><title type="html">Scribbles by Rifhan</title><subtitle>Scribbles by Rifhan is a personal blog</subtitle><author><name>Rifhan Akram</name></author><entry><title type="html">UUIDs vs ULIDs For Better Write Performance At Scale</title><link href="https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/" rel="alternate" type="text/html" title="UUIDs vs ULIDs For Better Write Performance At Scale" /><published>2023-01-14T00:00:00+05:30</published><updated>2023-01-14T00:00:00+05:30</updated><id>https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf</id><content type="html" xml:base="https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/">&lt;h1 id=&quot;uuids-vs-ulids-for-better-write-performance-at-scale&quot;&gt;UUIDs vs ULIDs For Better Write Performance At Scale&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://blog.rifhanakram.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.rifhanakram.com/" rel="alternate" type="text/html" /><updated>2025-04-14T16:12:04+05:30</updated><id>https://blog.rifhanakram.com/feed.xml</id><title type="html">Scribbles by Rifhan</title><subtitle>Scribbles by Rifhan is a personal blog</subtitle><author><name>Rifhan Akram</name></author><entry><title type="html">Lessons From ER To The Software World</title><link href="https://blog.rifhanakram.com/posts/lessons-from-er-to-software-world/" rel="alternate" type="text/html" title="Lessons From ER To The Software World" /><published>2025-04-14T00:00:00+05:30</published><updated>2025-04-14T00:00:00+05:30</updated><id>https://blog.rifhanakram.com/posts/lessons-from-er-to-software-world</id><content type="html" xml:base="https://blog.rifhanakram.com/posts/lessons-from-er-to-software-world/">&lt;p&gt;What can software engineers learn from emergency rooms? In this article, I explore how the principles of ER operations—from triaging and handling surges to conducting blameless postmortems—can be applied to software incident response. Drawing parallels between medical emergencies and software incidents, I discuss the importance of proper logging, structured incident response playbooks, and continuous improvement through postmortems. The article provides practical insights for teams of any size to build more reliable software systems using lessons from emergency medicine.&lt;/p&gt;
+
+&lt;p&gt;Read the full article on &lt;a href=&quot;https://engineering.corzent.com/when-things-go-wrong-lessons-from-er-emergency-room-to-the-software-world-9a28881c3b02&quot;&gt;Corzent’s Engineering Blog&lt;/a&gt;.&lt;/p&gt;</content><author><name>Rifhan Akram</name></author><category term="tech" /><summary type="html">What can software engineers learn from emergency rooms? In this article, I explore how the principles of ER operations—from triaging and handling surges to conducting blameless postmortems—can be applied to software incident response. Drawing parallels between medical emergencies and software incidents, I discuss the importance of proper logging, structured incident response playbooks, and continuous improvement through postmortems. The article provides practical insights for teams of any size to build more reliable software systems using lessons from emergency medicine.</summary></entry><entry><title type="html">UUIDs vs ULIDs For Better Write Performance At Scale</title><link href="https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/" rel="alternate" type="text/html" title="UUIDs vs ULIDs For Better Write Performance At Scale" /><published>2023-01-14T00:00:00+05:30</published><updated>2023-01-14T00:00:00+05:30</updated><id>https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf</id><content type="html" xml:base="https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/">&lt;h1 id=&quot;uuids-vs-ulids-for-better-write-performance-at-scale&quot;&gt;UUIDs vs ULIDs For Better Write Performance At Scale&lt;/h1&gt;
 
 &lt;p&gt;In this article, we will be discussing the usage of keys as unique identifiers in a distributed relational database setup and their impact on write performance.&lt;/p&gt;
 
@@ -155,7 +157,31 @@ In the above image the multi-branch job has executed when a change has been push
 &lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=qXeBwMVCnSw&quot;&gt;Video&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=qXeBwMVCnSw&quot;&gt;Video&lt;/a&gt; (July 2020)&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/rifhanakram/grpc-microservice-communication-with-aws-appmesh&quot;&gt;Slides&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/rifhanakram/gRPC-appmesh-demo&quot;&gt;Code Samples&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Rifhan Akram</name></author><category term="tech" /><summary type="html">gRPC Microservice Communication With AWS App Mesh</summary></entry></feed>
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;net-diaries-ep-1-the-evolution-of-net--best-practices-of-net-core&quot;&gt;.Net Diaries Ep 1: The Evolution of .Net &amp;amp; Best Practices of .Net Core&lt;/h2&gt;
+
+&lt;p&gt;I participated in a panel discussion hosted by Gapstars for Episode 1 of .Net Diaries, where we engaged in an in-depth conversation about the evolution of the .Net framework and best practices in .Net Core. The panel explored the framework’s transformation over the years and how .Net Core has revolutionized the development landscape. We collectively shared insights about key benefits like cross-platform capabilities, improved performance, and modern development practices, while also discussing potential challenges teams might face during migration and adoption.&lt;/p&gt;
+
+&lt;h3 id=&quot;references-1&quot;&gt;References&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=VyL0WOS86Nc&quot;&gt;Video&lt;/a&gt; (March 2023)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Thanks to Gapstars for organizing this panel discussion and bringing together .Net practitioners to share their experiences and insights with the community.&lt;/p&gt;
+
+&lt;h2 id=&quot;net-diaries-ep-2-going-cloud-native-with-net&quot;&gt;.Net Diaries Ep 2: Going Cloud Native with .Net&lt;/h2&gt;
+
+&lt;p&gt;I participated in the second episode of .Net Diaries hosted by Gapstars, where we explored the world of cloud-native .Net applications. The panel discussion focused on key aspects of modern .Net development in the cloud, including scalability, performance optimization, and security best practices. We shared practical insights and real-world experiences about building and deploying .Net applications in cloud environments.&lt;/p&gt;
+
+&lt;h3 id=&quot;references-2&quot;&gt;References&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=TSQo109afMk&quot;&gt;Video&lt;/a&gt; (August 2023)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Thanks to Gapstars for continuing this insightful series and providing a platform for the .Net community to share knowledge and experiences.&lt;/p&gt;</content><author><name>Rifhan Akram</name></author><category term="tech" /><summary type="html">gRPC Microservice Communication With AWS App Mesh</summary></entry></feed>
