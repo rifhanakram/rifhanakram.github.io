@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://blog.rifhanakram.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.rifhanakram.com/" rel="alternate" type="text/html" /><updated>2025-09-16T13:28:13+05:30</updated><id>https://blog.rifhanakram.com/feed.xml</id><title type="html">Scribbles by Rifhan</title><subtitle>Scribbles by Rifhan is a personal blog</subtitle><author><name>Rifhan Akram</name></author><entry><title type="html">My AWS IAM Playbook: 7 Lessons from the Trenches</title><link href="https://blog.rifhanakram.com/posts/IAM-what-IAM-secure-your-aws-kingdom/" rel="alternate" type="text/html" title="My AWS IAM Playbook: 7 Lessons from the Trenches" /><published>2025-09-16T00:00:00+05:30</published><updated>2025-09-16T00:00:00+05:30</updated><id>https://blog.rifhanakram.com/posts/IAM-what-IAM-secure-your-aws-kingdom</id><content type="html" xml:base="https://blog.rifhanakram.com/posts/IAM-what-IAM-secure-your-aws-kingdom/">&lt;h1 id=&quot;my-aws-iam-playbook-7-lessons-from-the-trenches&quot;&gt;My AWS IAM Playbook: 7 Lessons from the Trenches&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://blog.rifhanakram.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.rifhanakram.com/" rel="alternate" type="text/html" /><updated>2025-09-16T13:43:50+05:30</updated><id>https://blog.rifhanakram.com/feed.xml</id><title type="html">Scribbles by Rifhan</title><subtitle>Scribbles by Rifhan is a personal blog</subtitle><author><name>Rifhan Akram</name></author><entry><title type="html">My AWS IAM Playbook: 7 Lessons from the Trenches</title><link href="https://blog.rifhanakram.com/posts/IAM-what-IAM-secure-your-aws-kingdom/" rel="alternate" type="text/html" title="My AWS IAM Playbook: 7 Lessons from the Trenches" /><published>2025-09-16T00:00:00+05:30</published><updated>2025-09-16T00:00:00+05:30</updated><id>https://blog.rifhanakram.com/posts/IAM-what-IAM-secure-your-aws-kingdom</id><content type="html" xml:base="https://blog.rifhanakram.com/posts/IAM-what-IAM-secure-your-aws-kingdom/">&lt;h1 id=&quot;my-aws-iam-playbook-7-lessons-from-the-trenches&quot;&gt;My AWS IAM Playbook: 7 Lessons from the Trenches&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/static/img/my-iam-playbook.png&quot; alt=&quot;Panicked engineers after production is compromised&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;After years of working in software companies and startups building and scaling on AWS, I’ve seen a clear pattern. The teams that move fastest and sleep best at night are the ones who took Identity and Access Management (IAM) seriously from day one. It’s the bedrock of a secure and scalable cloud environment.&lt;/p&gt;
 
 &lt;p&gt;Based on my experience, this isn’t just a list of best practices. This is my non-negotiable playbook for getting IAM right from the day one.&lt;/p&gt;
-
-&lt;hr /&gt;
 
 &lt;h3 id=&quot;1-the-first-thing-i-check-is-mfa-on-everything&quot;&gt;1. The First Thing I Check: Is MFA on Everything?&lt;/h3&gt;
 
@@ -12,15 +12,11 @@
 
 &lt;p&gt;A password is just a single, fragile key. MFA is the deadbolt. If a password gets compromised (and it will), MFA is the only thing standing between an attacker and your entire AWS kingdom. My rule is simple: MFA isn’t just for the root user. It’s for &lt;strong&gt;every single human user&lt;/strong&gt; in the account. No exceptions.&lt;/p&gt;
 
-&lt;hr /&gt;
-
 &lt;h3 id=&quot;2-dont-learn-this-lesson-the-hard-way-rotate-your-access-keys&quot;&gt;2. Don’t Learn This Lesson the Hard Way: Rotate Your Access Keys&lt;/h3&gt;
 
 &lt;p&gt;I once worked with a company that was dealing with a account being compromised and unidentified compute resources running. It turned out to be an old access key from a developer who had left the company six months prior. The key, which had been accidentally committed to a private GitHub repo that was later made public, was still active.&lt;/p&gt;
 
 &lt;p&gt;Long-lived, static credentials are a ticking time bomb. My advice is firm: enforce a &lt;strong&gt;90-day rotation policy&lt;/strong&gt; for all programmatic access keys. If a key is leaked, this rule ensures it becomes useless in a matter of weeks, not years. Use tools like IAM Access Analyzer to find and delete old, unused keys—it’s one of the easiest security wins you can get.&lt;/p&gt;
-
-&lt;hr /&gt;
 
 &lt;h3 id=&quot;3-the-most-dangerous-habit-i-see-using-the-root-user&quot;&gt;3. The Most Dangerous Habit I See: Using the Root User&lt;/h3&gt;
 
@@ -36,15 +32,11 @@
 
 &lt;p&gt;You should only touch the root user for a handful of specific billing or account-level tasks. Period.&lt;/p&gt;
 
-&lt;hr /&gt;
-
 &lt;h3 id=&quot;4-stop-the-privilege-creep-before-it-starts-use-roles-not-individuals&quot;&gt;4. Stop the “Privilege Creep” Before It Starts: Use Roles, Not Individuals&lt;/h3&gt;
 
 &lt;p&gt;The most chaotic IAM setups I’ve ever had to untangle are the ones where permissions were attached directly to individual users. As people change roles or leave, it becomes a mess of forgotten access and overly permissive accounts—a phenomenon I call “privilege creep.”&lt;/p&gt;
 
 &lt;p&gt;I always guide teams to think in terms of roles, not people. Create IAM Groups like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Developers&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;QualityEngineers&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReadOnlyAdmins&lt;/code&gt;. Attach well-defined policies to these groups. When a new engineer joins, you add them to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Developers&lt;/code&gt; group. It’s clean, auditable, and scales beautifully.&lt;/p&gt;
-
-&lt;hr /&gt;
 
 &lt;h3 id=&quot;5-the-cardinal-sin-hardcoded-credentials&quot;&gt;5. The Cardinal Sin: Hardcoded Credentials&lt;/h3&gt;
 
@@ -52,15 +44,11 @@
 
 &lt;p&gt;The solution is &lt;strong&gt;IAM Roles for Services&lt;/strong&gt;. Instead of giving your EC2 instance or Lambda function a static access key, you assign it a role. This role grants the application temporary, automatically rotated credentials to access other AWS services (like an S3 bucket). Your code has the access it needs, and there are no static keys to be stolen. Consider this a non-negotiable standard for any production workload.&lt;/p&gt;
 
-&lt;hr /&gt;
-
 &lt;h3 id=&quot;6-the-graduation-moment-moving-to-a-multi-account-strategy&quot;&gt;6. The “Graduation” Moment: Moving to a Multi-Account Strategy&lt;/h3&gt;
 
 &lt;p&gt;In my mind, a startup truly “graduates” to a professional cloud setup the day they move from one chaotic AWS account to a multi-account organization. I’ve seen the horror stories—a script run in a dev environment accidentally taking down a prod server because there was no separation.&lt;/p&gt;
 
 &lt;p&gt;A multi-account strategy makes that class of error impossible. By creating separate accounts for Dev, Staging, and Production under AWS Organizations, you create powerful security boundaries. You manage your users centrally and use IAM Roles to let them switch into different environments. This isolates your workloads and is the single most effective way to limit the blast radius of any incident.&lt;/p&gt;
-
-&lt;hr /&gt;
 
 &lt;h3 id=&quot;my-final-take&quot;&gt;My Final Take&lt;/h3&gt;
 
