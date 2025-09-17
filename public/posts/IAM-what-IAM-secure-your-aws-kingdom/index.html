@@ -49,11 +49,11 @@
   <div class="post-content e-content" itemprop="articleBody">
     <h1 id="my-aws-iam-playbook-7-lessons-from-the-trenches">My AWS IAM Playbook: 7 Lessons from the Trenches</h1>
 
+<p><img src="/static/img/my-iam-playbook.png" alt="Panicked engineers after production is compromised" /></p>
+
 <p>After years of working in software companies and startups building and scaling on AWS, I’ve seen a clear pattern. The teams that move fastest and sleep best at night are the ones who took Identity and Access Management (IAM) seriously from day one. It’s the bedrock of a secure and scalable cloud environment.</p>
 
 <p>Based on my experience, this isn’t just a list of best practices. This is my non-negotiable playbook for getting IAM right from the day one.</p>
-
-<hr />
 
 <h3 id="1-the-first-thing-i-check-is-mfa-on-everything">1. The First Thing I Check: Is MFA on Everything?</h3>
 
@@ -61,15 +61,11 @@
 
 <p>A password is just a single, fragile key. MFA is the deadbolt. If a password gets compromised (and it will), MFA is the only thing standing between an attacker and your entire AWS kingdom. My rule is simple: MFA isn’t just for the root user. It’s for <strong>every single human user</strong> in the account. No exceptions.</p>
 
-<hr />
-
 <h3 id="2-dont-learn-this-lesson-the-hard-way-rotate-your-access-keys">2. Don’t Learn This Lesson the Hard Way: Rotate Your Access Keys</h3>
 
 <p>I once worked with a company that was dealing with a account being compromised and unidentified compute resources running. It turned out to be an old access key from a developer who had left the company six months prior. The key, which had been accidentally committed to a private GitHub repo that was later made public, was still active.</p>
 
 <p>Long-lived, static credentials are a ticking time bomb. My advice is firm: enforce a <strong>90-day rotation policy</strong> for all programmatic access keys. If a key is leaked, this rule ensures it becomes useless in a matter of weeks, not years. Use tools like IAM Access Analyzer to find and delete old, unused keys—it’s one of the easiest security wins you can get.</p>
-
-<hr />
 
 <h3 id="3-the-most-dangerous-habit-i-see-using-the-root-user">3. The Most Dangerous Habit I See: Using the Root User</h3>
 
@@ -85,15 +81,11 @@
 
 <p>You should only touch the root user for a handful of specific billing or account-level tasks. Period.</p>
 
-<hr />
-
 <h3 id="4-stop-the-privilege-creep-before-it-starts-use-roles-not-individuals">4. Stop the “Privilege Creep” Before It Starts: Use Roles, Not Individuals</h3>
 
 <p>The most chaotic IAM setups I’ve ever had to untangle are the ones where permissions were attached directly to individual users. As people change roles or leave, it becomes a mess of forgotten access and overly permissive accounts—a phenomenon I call “privilege creep.”</p>
 
 <p>I always guide teams to think in terms of roles, not people. Create IAM Groups like <code class="language-plaintext highlighter-rouge">Developers</code>, <code class="language-plaintext highlighter-rouge">QualityEngineers</code>, or <code class="language-plaintext highlighter-rouge">ReadOnlyAdmins</code>. Attach well-defined policies to these groups. When a new engineer joins, you add them to the <code class="language-plaintext highlighter-rouge">Developers</code> group. It’s clean, auditable, and scales beautifully.</p>
-
-<hr />
 
 <h3 id="5-the-cardinal-sin-hardcoded-credentials">5. The Cardinal Sin: Hardcoded Credentials</h3>
 
@@ -101,15 +93,11 @@
 
 <p>The solution is <strong>IAM Roles for Services</strong>. Instead of giving your EC2 instance or Lambda function a static access key, you assign it a role. This role grants the application temporary, automatically rotated credentials to access other AWS services (like an S3 bucket). Your code has the access it needs, and there are no static keys to be stolen. Consider this a non-negotiable standard for any production workload.</p>
 
-<hr />
-
 <h3 id="6-the-graduation-moment-moving-to-a-multi-account-strategy">6. The “Graduation” Moment: Moving to a Multi-Account Strategy</h3>
 
 <p>In my mind, a startup truly “graduates” to a professional cloud setup the day they move from one chaotic AWS account to a multi-account organization. I’ve seen the horror stories—a script run in a dev environment accidentally taking down a prod server because there was no separation.</p>
 
 <p>A multi-account strategy makes that class of error impossible. By creating separate accounts for Dev, Staging, and Production under AWS Organizations, you create powerful security boundaries. You manage your users centrally and use IAM Roles to let them switch into different environments. This isolates your workloads and is the single most effective way to limit the blast radius of any incident.</p>
-
-<hr />
 
 <h3 id="my-final-take">My Final Take</h3>
 
