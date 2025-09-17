@@ -49,7 +49,8 @@
   <div class="post-content e-content" itemprop="articleBody">
     <h1 id="my-aws-iam-playbook-6-lessons-from-the-trenches">My AWS IAM Playbook: 6 Lessons from the Trenches</h1>
 
-<p><img src="/static/img/my-iam-playbook.png" alt="Panicked engineers after production is compromised" /></p>
+<p><img src="/static/img/my-iam-playbook.png" alt="Panicked engineers after production is compromised" />
+<em>AI Generated Image by Gemini Nano Banana</em></p>
 
 <p>After years of working in software companies and startups building and scaling on AWS, I’ve seen a clear pattern. The teams that move fastest and sleep best at night are the ones who took Identity and Access Management (IAM) seriously from day one. It’s the bedrock of a secure and scalable cloud environment.</p>
 
@@ -57,15 +58,15 @@
 
 <h3 id="1-the-first-thing-i-check-is-mfa-on-everything">1. The First Thing I Check: Is MFA on Everything?</h3>
 
-<p>When I start working with a client, the very first thing I look at is the MFA status. It tells alot about security posture and thinking. Seeing a root account without Multi-Factor Authentication is a red flag.</p>
+<p>When I start working in a project, the very first thing I look at is the MFA status. It tells alot about security posture and thinking. Seeing a root account without Multi-Factor Authentication is a red flag.</p>
 
 <p>A password is just a single, fragile key. MFA is the deadbolt. If a password gets compromised (and it will), MFA is the only thing standing between an attacker and your entire AWS kingdom. My rule is simple: MFA isn’t just for the root user. It’s for <strong>every single human user</strong> in the account. No exceptions.</p>
 
 <h3 id="2-dont-learn-this-lesson-the-hard-way-rotate-your-access-keys">2. Don’t Learn This Lesson the Hard Way: Rotate Your Access Keys</h3>
 
-<p>I once worked with a company that was dealing with a account being compromised and unidentified compute resources running. It turned out to be an old access key from a developer who had left the company six months prior. The key, which had been accidentally committed to a private GitHub repo that was later made public, was still active.</p>
+<p>I once worked in a project that was dealing with a account being compromised and unidentified compute resources running. It turned out to be an old access key from a developer who had left the project six months prior. The key, which had been accidentally committed to a private GitHub repo that was later made public, was still active.</p>
 
-<p>Long-lived, static credentials are a ticking time bomb. My advice is firm: enforce a <strong>90-day rotation policy</strong> for all programmatic access keys. If a key is leaked, this rule ensures it becomes useless in a matter of weeks, not years. Use tools like IAM Access Analyzer to find and delete old, unused keys—it’s one of the easiest security wins you can get.</p>
+<p>Long-lived, static credentials are a ticking time bomb. My advice is firm: enforce a <strong>90-day rotation policy</strong> for all programmatic access keys. If a key is leaked, this rule ensures it becomes useless in a matter of weeks, not years. Use tools like <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html">IAM Access Analyzer</a> to find and delete old, unused keys—it’s one of the easiest security wins you can get.</p>
 
 <h3 id="3-the-most-dangerous-habit-i-see-using-the-root-user">3. The Most Dangerous Habit I See: Using the Root User</h3>
 
@@ -97,7 +98,7 @@
 
 <p>In my mind, a startup truly “graduates” to a professional cloud setup the day they move from one chaotic AWS account to a multi-account organization. I’ve seen the horror stories—a script run in a dev environment accidentally taking down a prod server because there was no separation.</p>
 
-<p>A multi-account strategy makes that class of error impossible. By creating separate accounts for Dev, Staging, and Production under AWS Organizations, you create powerful security boundaries. You manage your users centrally and use IAM Roles to let them switch into different environments. This isolates your workloads and is the single most effective way to limit the blast radius of any incident.</p>
+<p>A multi-account strategy makes that class of error impossible. By creating separate accounts for Dev, Staging, and Production under AWS Organizations, you create powerful security boundaries. You manage your users centrally and use <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-console.html">IAM Roles</a> to let them switch into different environments. This isolates your workloads and is the single most effective way to limit the blast radius of any incident.</p>
 
 <h3 id="my-final-take">My Final Take</h3>
 

@@ -3,22 +3,22 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>ulids vs uuids for better write perf | Scribbles by Rifhan</title>
+<title>UUIDs vs ULIDs For Better Write Performance At Scale | Scribbles by Rifhan</title>
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="ulids vs uuids for better write perf" />
+<meta property="og:title" content="UUIDs vs ULIDs For Better Write Performance At Scale" />
 <meta name="author" content="Rifhan Akram" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="title: “UUIDs vs ULIDs For Better Write Performance At Scale” date: 2023-01-14T21:29:58+05:30 draft: false —" />
-<meta property="og:description" content="title: “UUIDs vs ULIDs For Better Write Performance At Scale” date: 2023-01-14T21:29:58+05:30 draft: false —" />
+<meta name="description" content="UUIDs vs ULIDs For Better Write Performance At Scale" />
+<meta property="og:description" content="UUIDs vs ULIDs For Better Write Performance At Scale" />
 <link rel="canonical" href="https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/" />
 <meta property="og:url" content="https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/" />
 <meta property="og:site_name" content="Scribbles by Rifhan" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-04-14T00:00:00+05:30" />
+<meta property="article:published_time" content="2023-01-14T00:00:00+05:30" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="ulids vs uuids for better write perf" />
+<meta property="twitter:title" content="UUIDs vs ULIDs For Better Write Performance At Scale" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Rifhan Akram"},"dateModified":"2025-04-14T00:00:00+05:30","datePublished":"2025-04-14T00:00:00+05:30","description":"title: “UUIDs vs ULIDs For Better Write Performance At Scale” date: 2023-01-14T21:29:58+05:30 draft: false —","headline":"ulids vs uuids for better write perf","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/"},"url":"https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Rifhan Akram"},"dateModified":"2023-01-14T00:00:00+05:30","datePublished":"2023-01-14T00:00:00+05:30","description":"UUIDs vs ULIDs For Better Write Performance At Scale","headline":"UUIDs vs ULIDs For Better Write Performance At Scale","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/"},"url":"https://blog.rifhanakram.com/posts/ulids-vs-uuids-for-better-write-perf/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://blog.rifhanakram.com/feed.xml" title="Scribbles by Rifhan" /></head>
 <body><header class="site-header" role="banner">
@@ -41,20 +41,14 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">ulids vs uuids for better write perf</h1>
+    <h1 class="post-title p-name" itemprop="name headline">UUIDs vs ULIDs For Better Write Performance At Scale</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="2025-04-14T00:00:00+05:30" itemprop="datePublished">Apr 14, 2025
+      <time class="dt-published" datetime="2023-01-14T00:00:00+05:30" itemprop="datePublished">Jan 14, 2023
       </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Rifhan Akram</span></span></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <hr />
-<p>title: “UUIDs vs ULIDs For Better Write Performance At Scale”
-date: 2023-01-14T21:29:58+05:30
-draft: false
-—</p>
-
-<h1 id="uuids-vs-ulids-for-better-write-performance-at-scale">UUIDs vs ULIDs For Better Write Performance At Scale</h1>
+    <h1 id="uuids-vs-ulids-for-better-write-performance-at-scale">UUIDs vs ULIDs For Better Write Performance At Scale</h1>
 
 <p>In this article, we will be discussing the usage of keys as unique identifiers in a distributed relational database setup and their impact on write performance.</p>
 
